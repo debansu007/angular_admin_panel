@@ -1,0 +1,44 @@
+<nb-card *ngIf="canDisplay">
+  <nb-card-header>
+    Report Table
+    <button class="clrBtn" (click)="clear()" nbButton *ngIf="compId">Clear Filter</button>
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngIf="servData">
+      <nb-select (selectedChange)="changeOrg($event)" name="org" [(ngModel)]="sltdOrg" *ngIf="servData.userType == 'organization'">
+        <nb-option [value]="organization.id" *ngFor="let organization of organizations">{{organization.name}}</nb-option>
+      </nb-select>
+    </div>
+    <div *ngIf="data.length>0; else noData">
+      <ng2-smart-table [settings]="settings" [source]="data" (userRowSelect)="onRowSelect($event)" (click)="getClick($event)" (editConfirm)="onEditConfirm($event)"
+      (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+    </div>
+    <ng-template #noData>
+      <span class="">No reports available</span>
+    </ng-template>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Send Notification</nb-card-header>
+    <nb-card-body>
+      <form #pForm="ngForm">
+        <div class="form-control-group">
+          <label class="label" for="input-email">Notification Title :</label>
+          <input type="text" name="titleText" [(ngModel)]="titleModel" nbInput fullWidth
+            placeholder="Enter notification title here..." required>
+        </div>
+        <div class="form-control-group">
+          <label class="label" for="input-email">Notification Body :</label>
+          <textarea class="noResize" name="bodyText" [(ngModel)]="bodyModel" nbInput fullWidth
+            placeholder="Enter notification body here..." required></textarea>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <!-- <button nbButton (click)="ref.close()">Close Dialog</button> -->
+      <button nbButton [disabled]="pForm.invalid" (click)="sendPush(); ref.close()">Send</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,12 @@
+::ng-deep .ng2-smart-action-multiple-select>.form-control:focus {
+    box-shadow: none;
+}
+::ng-deep .nb-theme-default nb-card-body::-webkit-scrollbar {
+    height: 15px;
+}
+::ng-deep .nb-theme-default ng2-smart-table .ng2-smart-actions> input[type=checkbox] {
+    height: 15px;
+}
+.noResize {
+    resize: none;
+}

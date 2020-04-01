@@ -1,0 +1,56 @@
+<nb-card [nbSpinner]="!canDisplay" nbSpinnerSize="giant" nbSpinnerStatus="primary">
+  <nb-card-header>
+    Edit Privacy Policy
+  </nb-card-header>
+  <nb-card-body style="min-height: 500px;" *ngIf="canDisplay">
+
+    <ckeditor [(ngModel)]="ckeditorContent" [config]="{uiColor: '#3366ff', height: '350'}" [readonly]="false"
+      (change)="onChange($event)" (editorChange)="onEditorChange($event)" (ready)="onReady($event)"
+      (focus)="onFocus($event)" (blur)="onBlur($event)" (contentDom)="onContentDom($event)"
+      (fileUploadRequest)="onFileUploadRequest($event)" (fileUploadResponse)="onFileUploadResponse($event)"
+      (paste)="onPaste($event)" (drop)="onDrop($event)" debounce="500">
+    </ckeditor>
+    <div class="col-12 text-center" style="margin: 10px 0;">
+      <button (click)="save()" [disabled]="loading" [nbSpinner]="loading" nbButton>Update</button>
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-center">
+          <div class="upload-wrap">
+            <div class="loading-screen text-center" *ngIf="loading">
+              <img _ngcontent-kiw-c12="" class="loading-img" src="/assets/images/newton_ball.gif">
+            </div>
+            <input type="file" (change)="changeListener($event)" class="fileInput" accept="application/pdf" nbInput
+              fullWidth required>
+            <div *ngIf="!loading">
+              <span class="label uploadTxt" *ngIf="!fileName; else showName">Upload Privacy Policy PDF</span>
+              <ng-template #showName>
+                <span class="label uploadTxt">{{fileName}}</span>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div class="col-3"></div>
+      </div>
+  
+      <div class="row padding-10">
+        <div class="col-3"></div>
+        <div class="col-6 text-center">
+          <div class="padding-10" *ngIf="pdfSrc">
+            <span class="">View file</span>
+            <a [href]="pdfSrc" target="_blank">
+              <nb-icon status="primary" class="goIcon" icon="external-link-outline"
+                [options]="{ animation: { type: 'zoom' } }"></nb-icon>
+            </a>
+          </div>
+          <div class="padding-10">
+            <button (click)="uploadPdf()" class="uploadBtn" [nbSpinner]="loading" nbSpinnerStatus="primary"
+            [disabled]="!fileName || loading" nbButton>Upload</button>
+          </div>
+        </div>
+        <div class="col-3"></div>
+      </div> -->
+
+  </nb-card-body>
+</nb-card>

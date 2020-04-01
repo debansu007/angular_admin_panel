@@ -1,0 +1,52 @@
+<div class="lists row">
+  <div class="col-md-12 col-lg-12 col-xxxl-12">
+    <nb-card class="list-card">
+      <nb-card-header>Notifications</nb-card-header>
+      <nb-card-body>
+        <div *ngIf="userRes">
+          <nb-select (selectedChange)="changeOrg($event)" name="org" [(ngModel)]="sltdOrg" *ngIf="userRes.userType == 'organization'">
+            <nb-option [value]="organization.id" *ngFor="let organization of organizations">{{organization.name}}</nb-option>
+          </nb-select>
+        </div>
+        <nb-list *ngIf="canDisplay">
+          <nb-list-item [ngStyle]="{'border-bottom': (notification.notificationType == 'claim' || notification.notificationType == 'Review Notification') ? '1px solid #edf1f7' : 'none' }" [style.padding]="getPadding(notification)" *ngFor="let notification of notifications">
+            <div nbTooltip="Click to approve the claim" nbTooltipPlacement="top" (click)="notiClick(notification)" *ngIf="notification.notificationType == 'claim'">
+              <span class="menu-title">{{notification.subject}}</span><br />
+              <!-- <span class="">Claimed by: {{notification.claimedById}}</span><br />
+              <span class="">Claimed Business: {{notification.claimedBusiness}}</span><br /> -->
+              <!-- <span class="desc">{{elipsis(notification.description, 300)}}</span> -->
+              <span class="desc">{{notification.description}}</span>
+              <nb-icon class="goRight" icon="chevron-right-outline" pack="eva"></nb-icon>
+            </div>
+            <div nbTooltip="Click to send a response" nbTooltipPlacement="top" (click)="reviewClick(notification)" *ngIf="notification.notificationType=='Review Notification'">
+              <span class="menu-title">You have got a review</span><br />
+              <span class="desc">{{notification?.Review}}</span>
+              <nb-icon class="goRight" icon="chevron-right-outline" pack="eva"></nb-icon>
+            </div>
+          </nb-list-item>
+          <nb-list-item *ngIf="notifications.length==0">
+            <span class="menu-title">No notifications available.</span><br />
+          </nb-list-item>
+        </nb-list>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
+
+<ng-template #revdialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Response to review</nb-card-header>
+    <nb-card-body>
+      <form #rForm="ngForm">
+        <div class="form-control-group">
+          <label class="label" for="input-email">Response body :</label>
+          <textarea class="noResize" [(ngModel)]="respBody" name="bodyText" nbInput fullWidth
+            placeholder="Enter response body here..." required></textarea>
+        </div>
+      </form>
+    </nb-card-body>
+    <nb-card-footer>
+      <button nbButton [disabled]="rForm.invalid" (click)="respond(); ref.close()">Respond</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

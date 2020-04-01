@@ -1,0 +1,8 @@
+<nb-card *ngIf="canDisplay">
+  <nb-card-header>
+    Company Table
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="data" (editConfirm)="onEditConfirm($event)" (userRowSelect)="onRowSelect($event)"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

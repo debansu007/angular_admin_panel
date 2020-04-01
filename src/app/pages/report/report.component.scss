@@ -1,0 +1,14 @@
+::ng-deep .nb-theme-default nb-card-body::-webkit-scrollbar {
+    height: 15px;
+}
+.clrBtn {
+    float: right;
+    text-transform: none !important;
+}
+::ng-deep .pushBtn {
+    background: #406bff;
+    color: #ffffff !important;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer !important;
+}
