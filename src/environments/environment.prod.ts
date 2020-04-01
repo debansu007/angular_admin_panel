@@ -6,12 +6,12 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyCr8GPzVn6Sq6Q_bDzOJgly7l_xwrUbvPY",
-    authDomain: "tribe-235805.firebaseapp.com",
-    databaseURL: "https://tribe-235805.firebaseio.com",
-    projectId: "tribe-235805",
-    storageBucket: "tribe-235805.appspot.com",
-    messagingSenderId: "563597639388"
+    apiKey: "xxxx...",
+    authDomain: "xxxxx...",
+    databaseURL: "xxxx...",
+    projectId: "xxxx...",
+    storageBucket: "xxxx...",
+    messagingSenderId: "xxxx..."
   },
   adminEmail: "admin@admin.com"
 };
